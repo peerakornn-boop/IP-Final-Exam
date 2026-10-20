@@ -5,6 +5,7 @@
   "main": "start_cloud_backend.js",
   "scripts": {
     "start": "node start_cloud_backend.js",
+    "serve": "node serve_frontend.js",
     "push": "node push_to_github.js"
   },
   "author": "std6730251506 (Peerakorn Nilkaew)",
