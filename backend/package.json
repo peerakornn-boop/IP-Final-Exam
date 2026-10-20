@@ -1,0 +1,25 @@
+{
+  "name": "ip-final-exam-backend",
+  "version": "1.0.0",
+  "description": "HR Manager & Salary Analytics System - Internet Programming Final Exam 2026",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "express",
+    "mysql",
+    "hr-management",
+    "salary-analytics",
+    "internet-programming"
+  ],
+  "author": "std6730251506 (Peerakorn Nilkaew)",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mysql2": "^3.9.7"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "ip-final-exam",
+  "version": "1.0.0",
+  "description": "HR Manager & Salary Analytics System - Internet Programming Final Exam 2026",
+  "main": "start_cloud_backend.js",
+  "scripts": {
+    "start": "node start_cloud_backend.js",
+    "push": "node push_to_github.js"
+  },
+  "author": "std6730251506 (Peerakorn Nilkaew)",
+  "license": "MIT",
+  "dependencies": {
+    "isomorphic-git": "^1.25.10",
+    "ssh2": "^1.17.0"
+  }
+}
