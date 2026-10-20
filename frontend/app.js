@@ -3,7 +3,7 @@
 // Course: Internet Programming (IP) Final Exam 2026
 // Student: std6730251506 (Peerakorn Nilkaew)
 // API Server: http://119.59.102.161:3112
-// Database: ip_std6730251506 (Field Prefix: NinSom_)
+// Database: ip_std6730251506 (Field Prefix: Peerakorn_Nin_)
 // ========================================================
 
 const API_BASE = 'http://119.59.102.161:3112';
@@ -356,18 +356,18 @@ function renderEmployeesTable(employees) {
     };
 
     tbody.innerHTML = employees.map(emp => {
-        const deptClass = deptColors[emp.NinSom_Department] || 'bg-slate-50 text-slate-700 border-slate-200';
-        const statusClass = statusBadges[emp.NinSom_Status] || 'bg-slate-100 text-slate-700';
+        const deptClass = deptColors[emp.Peerakorn_Nin_Department] || 'bg-slate-50 text-slate-700 border-slate-200';
+        const statusClass = statusBadges[emp.Peerakorn_Nin_Status] || 'bg-slate-100 text-slate-700';
 
         return `
             <tr class="hover:bg-slate-50/80 transition-colors group">
                 <!-- Employee Info -->
                 <td class="py-3 px-4">
                     <div class="flex items-center space-x-3">
-                        <img src="${emp.NinSom_Avatar_URL || 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150'}" class="w-9 h-9 rounded-full object-cover border border-slate-200 shadow-sm">
+                        <img src="${emp.Peerakorn_Nin_Avatar_URL || 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150'}" class="w-9 h-9 rounded-full object-cover border border-slate-200 shadow-sm">
                         <div>
-                            <div class="font-bold text-slate-900">${emp.NinSom_First_Name} ${emp.NinSom_Last_Name}</div>
-                            <div class="text-[11px] text-slate-400 font-mono">${emp.NinSom_Email}</div>
+                            <div class="font-bold text-slate-900">${emp.Peerakorn_Nin_First_Name} ${emp.Peerakorn_Nin_Last_Name}</div>
+                            <div class="text-[11px] text-slate-400 font-mono">${emp.Peerakorn_Nin_Email}</div>
                         </div>
                     </div>
                 </td>
@@ -375,45 +375,45 @@ function renderEmployeesTable(employees) {
                 <!-- Department -->
                 <td class="py-3 px-4">
                     <span class="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-semibold border ${deptClass}">
-                        ${emp.NinSom_Department}
+                        ${emp.Peerakorn_Nin_Department}
                     </span>
                 </td>
 
                 <!-- Position -->
-                <td class="py-3 px-4 text-slate-700 font-medium">${emp.NinSom_Position}</td>
+                <td class="py-3 px-4 text-slate-700 font-medium">${emp.Peerakorn_Nin_Position}</td>
 
                 <!-- Base Salary -->
-                <td class="py-3 px-4 text-right font-mono font-bold text-slate-800">${formatCurrency(emp.NinSom_Base_Salary)}</td>
+                <td class="py-3 px-4 text-right font-mono font-bold text-slate-800">${formatCurrency(emp.Peerakorn_Nin_Base_Salary)}</td>
 
                 <!-- Bonus -->
-                <td class="py-3 px-4 text-right font-mono text-blue-600 font-semibold">+${formatCurrency(emp.NinSom_Bonus)}</td>
+                <td class="py-3 px-4 text-right font-mono text-blue-600 font-semibold">+${formatCurrency(emp.Peerakorn_Nin_Bonus)}</td>
 
                 <!-- SSF -->
-                <td class="py-3 px-4 text-right font-mono text-purple-600">-${formatCurrency(emp.NinSom_Social_Security)}</td>
+                <td class="py-3 px-4 text-right font-mono text-purple-600">-${formatCurrency(emp.Peerakorn_Nin_Social_Security)}</td>
 
                 <!-- Tax -->
-                <td class="py-3 px-4 text-right font-mono text-amber-600">-${formatCurrency(emp.NinSom_Tax)}</td>
+                <td class="py-3 px-4 text-right font-mono text-amber-600">-${formatCurrency(emp.Peerakorn_Nin_Tax)}</td>
 
                 <!-- Net Salary -->
-                <td class="py-3 px-4 text-right font-mono font-extrabold text-emerald-600">${formatCurrency(emp.NinSom_Net_Salary)}</td>
+                <td class="py-3 px-4 text-right font-mono font-extrabold text-emerald-600">${formatCurrency(emp.Peerakorn_Nin_Net_Salary)}</td>
 
                 <!-- Status -->
                 <td class="py-3 px-4 text-center">
                     <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold ${statusClass}">
-                        ${emp.NinSom_Status}
+                        ${emp.Peerakorn_Nin_Status}
                     </span>
                 </td>
 
                 <!-- Action Buttons -->
                 <td class="py-3 px-4 text-center">
                     <div class="flex items-center justify-center space-x-1.5 opacity-90 group-hover:opacity-100">
-                        <button onclick="viewEmployeeDetail(${emp.NinSom_ID_Employee})" title="ดูรายละเอียด" class="w-7 h-7 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition-all">
+                        <button onclick="viewEmployeeDetail(${emp.Peerakorn_Nin_ID_Employee})" title="ดูรายละเอียด" class="w-7 h-7 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition-all">
                             <i data-lucide="eye" class="w-3.5 h-3.5"></i>
                         </button>
-                        <button onclick="openEditModal(${emp.NinSom_ID_Employee})" title="แก้ไขข้อมูล" class="w-7 h-7 rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-700 flex items-center justify-center transition-all">
+                        <button onclick="openEditModal(${emp.Peerakorn_Nin_ID_Employee})" title="แก้ไขข้อมูล" class="w-7 h-7 rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-700 flex items-center justify-center transition-all">
                             <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
                         </button>
-                        <button onclick="deleteEmployee(${emp.NinSom_ID_Employee}, '${emp.NinSom_First_Name} ${emp.NinSom_Last_Name}')" title="ลบข้อมูล" class="w-7 h-7 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-700 flex items-center justify-center transition-all">
+                        <button onclick="deleteEmployee(${emp.Peerakorn_Nin_ID_Employee}, '${emp.Peerakorn_Nin_First_Name} ${emp.Peerakorn_Nin_Last_Name}')" title="ลบข้อมูล" class="w-7 h-7 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-700 flex items-center justify-center transition-all">
                             <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
                         </button>
                     </div>
@@ -451,22 +451,22 @@ function openAddModal() {
 }
 
 function openEditModal(empId) {
-    const emp = employeesData.find(e => e.NinSom_ID_Employee === empId);
+    const emp = employeesData.find(e => e.Peerakorn_Nin_ID_Employee === empId);
     if (!emp) return;
 
-    document.getElementById('modalTitle').textContent = `แก้ไขข้อมูลพนักงาน (ID: ${emp.NinSom_ID_Employee})`;
-    document.getElementById('formEmployeeId').value = emp.NinSom_ID_Employee;
-    document.getElementById('formFirstName').value = emp.NinSom_First_Name;
-    document.getElementById('formLastName').value = emp.NinSom_Last_Name;
-    document.getElementById('formEmail').value = emp.NinSom_Email;
-    document.getElementById('formPhone').value = emp.NinSom_Phone;
-    document.getElementById('formDepartment').value = emp.NinSom_Department;
-    document.getElementById('formPosition').value = emp.NinSom_Position;
-    document.getElementById('formBaseSalary').value = emp.NinSom_Base_Salary;
-    document.getElementById('formBonus').value = emp.NinSom_Bonus;
-    document.getElementById('formHireDate').value = emp.NinSom_Hire_Date.split('T')[0];
-    document.getElementById('formStatus').value = emp.NinSom_Status;
-    document.getElementById('formAvatar').value = emp.NinSom_Avatar_URL || '';
+    document.getElementById('modalTitle').textContent = `แก้ไขข้อมูลพนักงาน (ID: ${emp.Peerakorn_Nin_ID_Employee})`;
+    document.getElementById('formEmployeeId').value = emp.Peerakorn_Nin_ID_Employee;
+    document.getElementById('formFirstName').value = emp.Peerakorn_Nin_First_Name;
+    document.getElementById('formLastName').value = emp.Peerakorn_Nin_Last_Name;
+    document.getElementById('formEmail').value = emp.Peerakorn_Nin_Email;
+    document.getElementById('formPhone').value = emp.Peerakorn_Nin_Phone;
+    document.getElementById('formDepartment').value = emp.Peerakorn_Nin_Department;
+    document.getElementById('formPosition').value = emp.Peerakorn_Nin_Position;
+    document.getElementById('formBaseSalary').value = emp.Peerakorn_Nin_Base_Salary;
+    document.getElementById('formBonus').value = emp.Peerakorn_Nin_Bonus;
+    document.getElementById('formHireDate').value = emp.Peerakorn_Nin_Hire_Date.split('T')[0];
+    document.getElementById('formStatus').value = emp.Peerakorn_Nin_Status;
+    document.getElementById('formAvatar').value = emp.Peerakorn_Nin_Avatar_URL || '';
 
     updateModalCalculationPreview();
     document.getElementById('employeeModal').classList.remove('hidden');
@@ -514,17 +514,17 @@ async function handleEmployeeSubmit(e) {
     const isEdit = !!id;
 
     const payload = {
-        NinSom_First_Name: document.getElementById('formFirstName').value.trim(),
-        NinSom_Last_Name: document.getElementById('formLastName').value.trim(),
-        NinSom_Email: document.getElementById('formEmail').value.trim(),
-        NinSom_Phone: document.getElementById('formPhone').value.trim(),
-        NinSom_Department: document.getElementById('formDepartment').value,
-        NinSom_Position: document.getElementById('formPosition').value.trim(),
-        NinSom_Base_Salary: parseFloat(document.getElementById('formBaseSalary').value) || 0,
-        NinSom_Bonus: parseFloat(document.getElementById('formBonus').value) || 0,
-        NinSom_Hire_Date: document.getElementById('formHireDate').value,
-        NinSom_Status: document.getElementById('formStatus').value,
-        NinSom_Avatar_URL: document.getElementById('formAvatar').value.trim() || undefined
+        Peerakorn_Nin_First_Name: document.getElementById('formFirstName').value.trim(),
+        Peerakorn_Nin_Last_Name: document.getElementById('formLastName').value.trim(),
+        Peerakorn_Nin_Email: document.getElementById('formEmail').value.trim(),
+        Peerakorn_Nin_Phone: document.getElementById('formPhone').value.trim(),
+        Peerakorn_Nin_Department: document.getElementById('formDepartment').value,
+        Peerakorn_Nin_Position: document.getElementById('formPosition').value.trim(),
+        Peerakorn_Nin_Base_Salary: parseFloat(document.getElementById('formBaseSalary').value) || 0,
+        Peerakorn_Nin_Bonus: parseFloat(document.getElementById('formBonus').value) || 0,
+        Peerakorn_Nin_Hire_Date: document.getElementById('formHireDate').value,
+        Peerakorn_Nin_Status: document.getElementById('formStatus').value,
+        Peerakorn_Nin_Avatar_URL: document.getElementById('formAvatar').value.trim() || undefined
     };
 
     try {
@@ -552,7 +552,7 @@ async function handleEmployeeSubmit(e) {
 }
 
 async function deleteEmployee(id, name) {
-    if (!confirm(`คุณแน่ใจหรือไม่ว่าต้องการลบข้อมูลพนักงาน "${name}" (ID: ${id})?\nการดำเนินการนี้จะลบข้อมูลออกจากฐานข้อมูล NinSom_Employees จริง`)) {
+    if (!confirm(`คุณแน่ใจหรือไม่ว่าต้องการลบข้อมูลพนักงาน "${name}" (ID: ${id})?\nการดำเนินการนี้จะลบข้อมูลออกจากฐานข้อมูล Peerakorn_Nin_Employees จริง`)) {
         return;
     }
 
@@ -577,23 +577,23 @@ async function viewEmployeeDetail(id) {
         const data = await res.json();
         if (data.success) {
             const e = data.employee;
-            document.getElementById('detailAvatar').src = e.NinSom_Avatar_URL || 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150';
-            document.getElementById('detailName').textContent = `${e.NinSom_First_Name} ${e.NinSom_Last_Name}`;
-            document.getElementById('detailPosition').textContent = e.NinSom_Position;
-            document.getElementById('detailDept').textContent = e.NinSom_Department;
-            document.getElementById('detailStatus').textContent = e.NinSom_Status;
-            document.getElementById('detailStatus').className = `px-2 py-0.5 rounded text-[10px] font-bold ${e.NinSom_Status === 'Active' ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-400/30' : 'bg-amber-500/20 text-amber-300 border border-amber-400/30'}`;
+            document.getElementById('detailAvatar').src = e.Peerakorn_Nin_Avatar_URL || 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150';
+            document.getElementById('detailName').textContent = `${e.Peerakorn_Nin_First_Name} ${e.Peerakorn_Nin_Last_Name}`;
+            document.getElementById('detailPosition').textContent = e.Peerakorn_Nin_Position;
+            document.getElementById('detailDept').textContent = e.Peerakorn_Nin_Department;
+            document.getElementById('detailStatus').textContent = e.Peerakorn_Nin_Status;
+            document.getElementById('detailStatus').className = `px-2 py-0.5 rounded text-[10px] font-bold ${e.Peerakorn_Nin_Status === 'Active' ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-400/30' : 'bg-amber-500/20 text-amber-300 border border-amber-400/30'}`;
 
-            document.getElementById('detailEmail').textContent = e.NinSom_Email;
-            document.getElementById('detailPhone').textContent = e.NinSom_Phone;
-            document.getElementById('detailHireDate').textContent = formatDate(e.NinSom_Hire_Date);
-            document.getElementById('detailEmpId').textContent = '#' + e.NinSom_ID_Employee;
+            document.getElementById('detailEmail').textContent = e.Peerakorn_Nin_Email;
+            document.getElementById('detailPhone').textContent = e.Peerakorn_Nin_Phone;
+            document.getElementById('detailHireDate').textContent = formatDate(e.Peerakorn_Nin_Hire_Date);
+            document.getElementById('detailEmpId').textContent = '#' + e.Peerakorn_Nin_ID_Employee;
 
-            document.getElementById('detailBaseSalary').textContent = formatCurrency(e.NinSom_Base_Salary);
-            document.getElementById('detailBonus').textContent = '+' + formatCurrency(e.NinSom_Bonus);
-            document.getElementById('detailSSF').textContent = '-' + formatCurrency(e.NinSom_Social_Security);
-            document.getElementById('detailTax').textContent = '-' + formatCurrency(e.NinSom_Tax);
-            document.getElementById('detailNetSalary').textContent = formatCurrency(e.NinSom_Net_Salary);
+            document.getElementById('detailBaseSalary').textContent = formatCurrency(e.Peerakorn_Nin_Base_Salary);
+            document.getElementById('detailBonus').textContent = '+' + formatCurrency(e.Peerakorn_Nin_Bonus);
+            document.getElementById('detailSSF').textContent = '-' + formatCurrency(e.Peerakorn_Nin_Social_Security);
+            document.getElementById('detailTax').textContent = '-' + formatCurrency(e.Peerakorn_Nin_Tax);
+            document.getElementById('detailNetSalary').textContent = formatCurrency(e.Peerakorn_Nin_Net_Salary);
 
             document.getElementById('detailModal').classList.remove('hidden');
             lucide.createIcons();
@@ -653,18 +653,18 @@ async function fetchSalaryHistory() {
             const tbody = document.getElementById('salaryHistoryBody');
             tbody.innerHTML = data.data.map(r => `
                 <tr class="hover:bg-slate-50 transition-colors">
-                    <td class="py-2.5 px-4 font-mono font-semibold text-slate-700">${r.NinSom_Month}/${r.NinSom_Year}</td>
-                    <td class="py-2.5 px-4 font-bold text-slate-900">${r.NinSom_First_Name} ${r.NinSom_Last_Name}</td>
-                    <td class="py-2.5 px-4 text-slate-500">${r.NinSom_Department}</td>
-                    <td class="py-2.5 px-4 text-right font-mono">${formatCurrency(r.NinSom_Base_Salary)}</td>
-                    <td class="py-2.5 px-4 text-right font-mono text-blue-600">+${formatCurrency(r.NinSom_Bonus)}</td>
-                    <td class="py-2.5 px-4 text-right font-mono text-emerald-600">+${formatCurrency(r.NinSom_Overtime)}</td>
-                    <td class="py-2.5 px-4 text-right font-mono text-amber-600">-${formatCurrency(r.NinSom_Tax)}</td>
-                    <td class="py-2.5 px-4 text-right font-mono text-purple-600">-${formatCurrency(r.NinSom_Social_Security)}</td>
-                    <td class="py-2.5 px-4 text-right font-mono font-bold text-emerald-700">${formatCurrency(r.NinSom_Net_Salary)}</td>
+                    <td class="py-2.5 px-4 font-mono font-semibold text-slate-700">${r.Peerakorn_Nin_Month}/${r.Peerakorn_Nin_Year}</td>
+                    <td class="py-2.5 px-4 font-bold text-slate-900">${r.Peerakorn_Nin_First_Name} ${r.Peerakorn_Nin_Last_Name}</td>
+                    <td class="py-2.5 px-4 text-slate-500">${r.Peerakorn_Nin_Department}</td>
+                    <td class="py-2.5 px-4 text-right font-mono">${formatCurrency(r.Peerakorn_Nin_Base_Salary)}</td>
+                    <td class="py-2.5 px-4 text-right font-mono text-blue-600">+${formatCurrency(r.Peerakorn_Nin_Bonus)}</td>
+                    <td class="py-2.5 px-4 text-right font-mono text-emerald-600">+${formatCurrency(r.Peerakorn_Nin_Overtime)}</td>
+                    <td class="py-2.5 px-4 text-right font-mono text-amber-600">-${formatCurrency(r.Peerakorn_Nin_Tax)}</td>
+                    <td class="py-2.5 px-4 text-right font-mono text-purple-600">-${formatCurrency(r.Peerakorn_Nin_Social_Security)}</td>
+                    <td class="py-2.5 px-4 text-right font-mono font-bold text-emerald-700">${formatCurrency(r.Peerakorn_Nin_Net_Salary)}</td>
                     <td class="py-2.5 px-4 text-center">
                         <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">
-                            ${r.NinSom_Payment_Status}
+                            ${r.Peerakorn_Nin_Payment_Status}
                         </span>
                     </td>
                 </tr>

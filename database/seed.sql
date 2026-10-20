@@ -8,7 +8,7 @@
 SET NAMES utf8mb4;
 
 -- Departments
-INSERT INTO NinSom_Departments (NinSom_Department_Name, NinSom_Budget) VALUES
+INSERT INTO Peerakorn_Nin_Departments (Peerakorn_Nin_Department_Name, Peerakorn_Nin_Budget) VALUES
 ('Information Technology', 1500000.00),
 ('Human Resources', 800000.00),
 ('Finance & Accounting', 1000000.00),
@@ -17,8 +17,8 @@ INSERT INTO NinSom_Departments (NinSom_Department_Name, NinSom_Budget) VALUES
 ('Customer Support', 600000.00);
 
 -- Employees
-INSERT INTO NinSom_Employees 
-(NinSom_First_Name, NinSom_Last_Name, NinSom_Email, NinSom_Phone, NinSom_Department, NinSom_Position, NinSom_Base_Salary, NinSom_Bonus, NinSom_Social_Security, NinSom_Tax, NinSom_Net_Salary, NinSom_Hire_Date, NinSom_Status, NinSom_Avatar_URL)
+INSERT INTO Peerakorn_Nin_Employees 
+(Peerakorn_Nin_First_Name, Peerakorn_Nin_Last_Name, Peerakorn_Nin_Email, Peerakorn_Nin_Phone, Peerakorn_Nin_Department, Peerakorn_Nin_Position, Peerakorn_Nin_Base_Salary, Peerakorn_Nin_Bonus, Peerakorn_Nin_Social_Security, Peerakorn_Nin_Tax, Peerakorn_Nin_Net_Salary, Peerakorn_Nin_Hire_Date, Peerakorn_Nin_Status, Peerakorn_Nin_Avatar_URL)
 VALUES
 ('Somsawut', 'Nindam', 'somsawut.n@ku.th', '081-234-5678', 'Information Technology', 'Chief Technical Officer (CTO)', 125000.00, 25000.00, 750.00, 14250.00, 135000.00, '2020-01-15', 'Active', 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150'),
 ('Peerakorn', 'Nilkaew', 'peerakorn.n@ku.th', '089-876-5432', 'Information Technology', 'Senior Full Stack Engineer', 85000.00, 12000.00, 750.00, 6800.00, 89450.00, '2022-03-01', 'Active', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150'),
@@ -32,8 +32,8 @@ VALUES
 ('Worawat', 'Intarasiri', 'worawat.i@ku.th', '089-012-3456', 'Information Technology', 'Frontend UI/UX Developer', 48000.00, 5000.00, 750.00, 2100.00, 50150.00, '2024-05-01', 'Probation', 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150');
 
 -- Salary History
-INSERT INTO NinSom_Salary_History
-(NinSom_ID_Employee, NinSom_Month, NinSom_Year, NinSom_Base_Salary, NinSom_Bonus, NinSom_Overtime, NinSom_Social_Security, NinSom_Tax, NinSom_Deductions, NinSom_Net_Salary, NinSom_Payment_Status, NinSom_Payment_Date)
+INSERT INTO Peerakorn_Nin_Salary_History
+(Peerakorn_Nin_ID_Employee, Peerakorn_Nin_Month, Peerakorn_Nin_Year, Peerakorn_Nin_Base_Salary, Peerakorn_Nin_Bonus, Peerakorn_Nin_Overtime, Peerakorn_Nin_Social_Security, Peerakorn_Nin_Tax, Peerakorn_Nin_Deductions, Peerakorn_Nin_Net_Salary, Peerakorn_Nin_Payment_Status, Peerakorn_Nin_Payment_Date)
 VALUES
 (1, 8, 2026, 125000.00, 25000.00, 0.00, 750.00, 14250.00, 0.00, 135000.00, 'Paid', '2026-08-31'),
 (1, 9, 2026, 125000.00, 25000.00, 0.00, 750.00, 14250.00, 0.00, 135000.00, 'Paid', '2026-09-30'),

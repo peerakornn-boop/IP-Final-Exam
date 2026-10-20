@@ -6,7 +6,7 @@
 * **Student ID / Username:** `std6730251506`
 * **Cloud Database Host:** `119.59.102.161` (Local socket: `127.0.0.1:3306`)
 * **Database Name:** `ip_std6730251506`
-* **Field Naming Convention:** All database fields are prefixed with `NinSom_` (e.g. `NinSom_ID_Employee`, `NinSom_First_Name`, `NinSom_Base_Salary`, etc.)
+* **Field Naming Convention:** All database fields are prefixed with `Peerakorn_Nin_` (e.g. `Peerakorn_Nin_ID_Employee`, `Peerakorn_Nin_First_Name`, `Peerakorn_Nin_Base_Salary`, etc.)
 * **Cloud Backend Server Port:** `3112` (`http://119.59.102.161:3112`)
 * **GitHub Repository:** [https://github.com/peerakornn-boop/IP-Final-Exam.git](https://github.com/peerakornn-boop/IP-Final-Exam.git)
 
@@ -37,49 +37,49 @@
 ---
 
 ## 🗄️ โครงสร้างฐานข้อมูล (Database Schema)
-ฐานข้อมูลทำงานบน Cloud MySQL Server (`ip_std6730251506`) โดยตั้งชื่อฟิลด์ทั้งหมดตามข้อกำหนด `NinSom_`:
+ฐานข้อมูลทำงานบน Cloud MySQL Server (`ip_std6730251506`) โดยตั้งชื่อฟิลด์ทั้งหมดตามข้อกำหนด `Peerakorn_Nin_`:
 
-### 1. ตาราง `NinSom_Employees` (ข้อมูลพนักงาน)
+### 1. ตาราง `Peerakorn_Nin_Employees` (ข้อมูลพนักงาน)
 | Field Name | Data Type | Key | Description |
 |---|---|---|---|
-| `NinSom_ID_Employee` | INT | PRIMARY (AI) | รหัสพนักงาน |
-| `NinSom_First_Name` | VARCHAR(100) | | ชื่อจริง |
-| `NinSom_Last_Name` | VARCHAR(100) | | นามสกุล |
-| `NinSom_Email` | VARCHAR(150) | UNIQUE | อีเมลติดต่อ |
-| `NinSom_Phone` | VARCHAR(25) | | เบอร์โทรศัพท์ |
-| `NinSom_Department` | VARCHAR(100) | | แผนก |
-| `NinSom_Position` | VARCHAR(100) | | ตำแหน่งงาน |
-| `NinSom_Base_Salary` | DECIMAL(12,2) | | เงินเดือนฐาน |
-| `NinSom_Bonus` | DECIMAL(12,2) | | เงินโบนัส / ค่าตอบแทนพิเศษ |
-| `NinSom_Social_Security` | DECIMAL(12,2) | | เงินสมทบประกันสังคม (5% สูงสุด 750 บาท) |
-| `NinSom_Tax` | DECIMAL(12,2) | | ภาษีเงินได้หัก ณ ที่จ่าย (คำนวณแบบขั้นบันได) |
-| `NinSom_Net_Salary` | DECIMAL(12,2) | | เงินเดือนสุทธิหลังหักภาษีและประกันสังคม |
-| `NinSom_Hire_Date` | DATE | | วันที่เริ่มงาน |
-| `NinSom_Status` | ENUM | | สถานะ (Active, Probation, Resigned, On Leave) |
-| `NinSom_Avatar_URL` | VARCHAR(255) | | ลิงก์รูปภาพโปรไฟล์ |
+| `Peerakorn_Nin_ID_Employee` | INT | PRIMARY (AI) | รหัสพนักงาน |
+| `Peerakorn_Nin_First_Name` | VARCHAR(100) | | ชื่อจริง |
+| `Peerakorn_Nin_Last_Name` | VARCHAR(100) | | นามสกุล |
+| `Peerakorn_Nin_Email` | VARCHAR(150) | UNIQUE | อีเมลติดต่อ |
+| `Peerakorn_Nin_Phone` | VARCHAR(25) | | เบอร์โทรศัพท์ |
+| `Peerakorn_Nin_Department` | VARCHAR(100) | | แผนก |
+| `Peerakorn_Nin_Position` | VARCHAR(100) | | ตำแหน่งงาน |
+| `Peerakorn_Nin_Base_Salary` | DECIMAL(12,2) | | เงินเดือนฐาน |
+| `Peerakorn_Nin_Bonus` | DECIMAL(12,2) | | เงินโบนัส / ค่าตอบแทนพิเศษ |
+| `Peerakorn_Nin_Social_Security` | DECIMAL(12,2) | | เงินสมทบประกันสังคม (5% สูงสุด 750 บาท) |
+| `Peerakorn_Nin_Tax` | DECIMAL(12,2) | | ภาษีเงินได้หัก ณ ที่จ่าย (คำนวณแบบขั้นบันได) |
+| `Peerakorn_Nin_Net_Salary` | DECIMAL(12,2) | | เงินเดือนสุทธิหลังหักภาษีและประกันสังคม |
+| `Peerakorn_Nin_Hire_Date` | DATE | | วันที่เริ่มงาน |
+| `Peerakorn_Nin_Status` | ENUM | | สถานะ (Active, Probation, Resigned, On Leave) |
+| `Peerakorn_Nin_Avatar_URL` | VARCHAR(255) | | ลิงก์รูปภาพโปรไฟล์ |
 
-### 2. ตาราง `NinSom_Salary_History` (ประวัติการจ่ายเงินเดือน)
+### 2. ตาราง `Peerakorn_Nin_Salary_History` (ประวัติการจ่ายเงินเดือน)
 | Field Name | Data Type | Key | Description |
 |---|---|---|---|
-| `NinSom_ID_Salary` | INT | PRIMARY (AI) | รหัสรายการจ่ายเงินเดือน |
-| `NinSom_ID_Employee` | INT | FOREIGN | อ้างอิงรหัสพนักงาน |
-| `NinSom_Month` | INT | | เดือนที่จ่าย (1-12) |
-| `NinSom_Year` | INT | | ปีที่จ่าย (e.g. 2026) |
-| `NinSom_Base_Salary` | DECIMAL(12,2) | | เงินเดือนฐานประจำรอบ |
-| `NinSom_Bonus` | DECIMAL(12,2) | | เงินโบนัสประจำรอบ |
-| `NinSom_Overtime` | DECIMAL(12,2) | | ค่าล่วงเวลา |
-| `NinSom_Social_Security` | DECIMAL(12,2) | | ประกันสังคม |
-| `NinSom_Tax` | DECIMAL(12,2) | | ภาษีหัก ณ ที่จ่าย |
-| `NinSom_Net_Salary` | DECIMAL(12,2) | | ยอดจ่ายสุทธิ |
-| `NinSom_Payment_Status` | ENUM | | สถานะการจ่าย (Paid, Pending) |
-| `NinSom_Payment_Date` | DATE | | วันที่ทำรายการจ่าย |
+| `Peerakorn_Nin_ID_Salary` | INT | PRIMARY (AI) | รหัสรายการจ่ายเงินเดือน |
+| `Peerakorn_Nin_ID_Employee` | INT | FOREIGN | อ้างอิงรหัสพนักงาน |
+| `Peerakorn_Nin_Month` | INT | | เดือนที่จ่าย (1-12) |
+| `Peerakorn_Nin_Year` | INT | | ปีที่จ่าย (e.g. 2026) |
+| `Peerakorn_Nin_Base_Salary` | DECIMAL(12,2) | | เงินเดือนฐานประจำรอบ |
+| `Peerakorn_Nin_Bonus` | DECIMAL(12,2) | | เงินโบนัสประจำรอบ |
+| `Peerakorn_Nin_Overtime` | DECIMAL(12,2) | | ค่าล่วงเวลา |
+| `Peerakorn_Nin_Social_Security` | DECIMAL(12,2) | | ประกันสังคม |
+| `Peerakorn_Nin_Tax` | DECIMAL(12,2) | | ภาษีหัก ณ ที่จ่าย |
+| `Peerakorn_Nin_Net_Salary` | DECIMAL(12,2) | | ยอดจ่ายสุทธิ |
+| `Peerakorn_Nin_Payment_Status` | ENUM | | สถานะการจ่าย (Paid, Pending) |
+| `Peerakorn_Nin_Payment_Date` | DATE | | วันที่ทำรายการจ่าย |
 
-### 3. ตาราง `NinSom_Departments` (ข้อมูลแผนกและงบประมาณ)
+### 3. ตาราง `Peerakorn_Nin_Departments` (ข้อมูลแผนกและงบประมาณ)
 | Field Name | Data Type | Key | Description |
 |---|---|---|---|
-| `NinSom_ID_Department` | INT | PRIMARY (AI) | รหัสแผนก |
-| `NinSom_Department_Name` | VARCHAR(100) | UNIQUE | ชื่อแผนก |
-| `NinSom_Budget` | DECIMAL(15,2) | | งบประมาณประจำปีที่ได้รับจัดสรร |
+| `Peerakorn_Nin_ID_Department` | INT | PRIMARY (AI) | รหัสแผนก |
+| `Peerakorn_Nin_Department_Name` | VARCHAR(100) | UNIQUE | ชื่อแผนก |
+| `Peerakorn_Nin_Budget` | DECIMAL(15,2) | | งบประมาณประจำปีที่ได้รับจัดสรร |
 
 ---
 
@@ -146,7 +146,7 @@ IP-Final-Exam/
 │   ├── app.js                 # Chart.js, API Integration & Form Logic
 │   └── style.css              # Custom Styling & Animations
 ├── database/
-│   ├── schema.sql             # Table Definitions with NinSom_ Prefix
+│   ├── schema.sql             # Table Definitions with Peerakorn_Nin_ Prefix
 │   └── seed.sql               # Seed Data (Departments, Employees, Payroll)
 ├── 1_START_BACKEND.bat        # Double-click script to start Cloud Backend
 ├── 2_START_FRONTEND.bat       # Double-click script to open Frontend

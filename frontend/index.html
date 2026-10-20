@@ -51,7 +51,7 @@
                             <h1 class="text-lg font-bold text-slate-900 tracking-tight">HR Manager & Salary Analytics</h1>
                             <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-brand-100 text-brand-700">Final Exam 2026</span>
                         </div>
-                        <p class="text-xs text-slate-500 font-medium">Cloud Database: <span class="font-mono text-indigo-600 font-semibold">ip_std6730251506</span> (Prefix: <span class="font-mono text-emerald-600 font-bold">NinSom_</span>)</p>
+                        <p class="text-xs text-slate-500 font-medium">Cloud Database: <span class="font-mono text-indigo-600 font-semibold">ip_std6730251506</span> (Prefix: <span class="font-mono text-emerald-600 font-bold">Peerakorn_Nin_</span>)</p>
                     </div>
                 </div>
 
@@ -257,7 +257,7 @@
                         </div>
                     </div>
                     <div class="pt-4 border-t border-white/10 text-[11px] text-slate-400 flex justify-between">
-                        <span>Database: NinSom_Employees</span>
+                        <span>Database: Peerakorn_Nin_Employees</span>
                         <span>KU Sriracha</span>
                     </div>
                 </div>
@@ -364,7 +364,7 @@
                 <!-- Table Footer -->
                 <div class="p-4 bg-slate-50/50 border-t border-slate-100 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-2">
                     <p>แสดงพนักงานทั้งหมด <span id="tableShowingCount" class="font-bold text-slate-700">0</span> คน</p>
-                    <p class="font-mono text-[11px] text-slate-400">Database Table: <span class="text-indigo-600 font-semibold">NinSom_Employees</span></p>
+                    <p class="font-mono text-[11px] text-slate-400">Database Table: <span class="text-indigo-600 font-semibold">Peerakorn_Nin_Employees</span></p>
                 </div>
             </div>
         </section>
@@ -458,7 +458,7 @@
             <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
                 <div class="p-5 border-b border-slate-100 flex justify-between items-center">
                     <div>
-                        <h3 class="font-bold text-slate-900 text-base">ประวัติการจ่ายเงินเดือน (NinSom_Salary_History)</h3>
+                        <h3 class="font-bold text-slate-900 text-base">ประวัติการจ่ายเงินเดือน (Peerakorn_Nin_Salary_History)</h3>
                         <p class="text-xs text-slate-500">บันทึกการจ่ายเงินเดือนพนักงานในแต่ละเดือนในระบบ Cloud Database</p>
                     </div>
                     <span class="text-xs px-2.5 py-1 bg-brand-50 text-brand-700 rounded-lg font-bold">18 Records Total</span>
@@ -493,7 +493,7 @@
         <section id="tab-departments" class="tab-content hidden space-y-6">
             <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
                 <h3 class="font-bold text-slate-900 text-lg">Department Allocations & Budget Utilization</h3>
-                <p class="text-xs text-slate-500 mt-1">งบประมาณประจำปีของแต่ละแผนกเทียบกับค่าใช้จ่ายเงินเดือนสุทธิปัจจุบัน (NinSom_Departments)</p>
+                <p class="text-xs text-slate-500 mt-1">งบประมาณประจำปีของแต่ละแผนกเทียบกับค่าใช้จ่ายเงินเดือนสุทธิปัจจุบัน (Peerakorn_Nin_Departments)</p>
             </div>
 
             <div id="departmentsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -511,7 +511,7 @@
             <div class="px-6 py-4 bg-gradient-to-r from-brand-600 to-indigo-600 text-white flex justify-between items-center">
                 <div>
                     <h3 id="modalTitle" class="text-lg font-bold">เพิ่มพนักงานใหม่ (Add Employee)</h3>
-                    <p class="text-xs text-brand-100 mt-0.5">บันทึกลงใน Cloud Database `ip_std6730251506.NinSom_Employees`</p>
+                    <p class="text-xs text-brand-100 mt-0.5">บันทึกลงใน Cloud Database `ip_std6730251506.Peerakorn_Nin_Employees`</p>
                 </div>
                 <button onclick="closeModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-all">
                     <i data-lucide="x" class="w-4 h-4"></i>
@@ -525,11 +525,11 @@
                 <!-- Names -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">ชื่อจริง (NinSom_First_Name) *</label>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">ชื่อจริง (Peerakorn_Nin_First_Name) *</label>
                         <input type="text" id="formFirstName" required placeholder="e.g. Somsawut" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-brand-500/20 focus:outline-none">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">นามสกุล (NinSom_Last_Name) *</label>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">นามสกุล (Peerakorn_Nin_Last_Name) *</label>
                         <input type="text" id="formLastName" required placeholder="e.g. Nindam" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-brand-500/20 focus:outline-none">
                     </div>
                 </div>
@@ -537,11 +537,11 @@
                 <!-- Contact -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">อีเมล (NinSom_Email) *</label>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">อีเมล (Peerakorn_Nin_Email) *</label>
                         <input type="email" id="formEmail" required placeholder="e.g. somsawut.n@ku.th" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-brand-500/20 focus:outline-none">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">เบอร์โทรศัพท์ (NinSom_Phone) *</label>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">เบอร์โทรศัพท์ (Peerakorn_Nin_Phone) *</label>
                         <input type="text" id="formPhone" required placeholder="e.g. 081-234-5678" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-brand-500/20 focus:outline-none">
                     </div>
                 </div>
@@ -549,7 +549,7 @@
                 <!-- Department & Position -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">แผนก (NinSom_Department) *</label>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">แผนก (Peerakorn_Nin_Department) *</label>
                         <select id="formDepartment" required class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-brand-500/20 focus:outline-none bg-white">
                             <option value="Information Technology">Information Technology</option>
                             <option value="Human Resources">Human Resources</option>
@@ -560,7 +560,7 @@
                         </select>
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">ตำแหน่ง (NinSom_Position) *</label>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">ตำแหน่ง (Peerakorn_Nin_Position) *</label>
                         <input type="text" id="formPosition" required placeholder="e.g. Full Stack Developer" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-brand-500/20 focus:outline-none">
                     </div>
                 </div>
@@ -568,11 +568,11 @@
                 <!-- Salary & Bonus (Triggers Auto Calculation) -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">เงินเดือนฐาน (NinSom_Base_Salary) *</label>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">เงินเดือนฐาน (Peerakorn_Nin_Base_Salary) *</label>
                         <input type="number" id="formBaseSalary" required min="15000" step="500" value="50000" oninput="updateModalCalculationPreview()" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm font-mono focus:ring-2 focus:ring-brand-500/20 focus:outline-none">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">เงินโบนัส (NinSom_Bonus)</label>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">เงินโบนัส (Peerakorn_Nin_Bonus)</label>
                         <input type="number" id="formBonus" min="0" step="500" value="5000" oninput="updateModalCalculationPreview()" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm font-mono focus:ring-2 focus:ring-brand-500/20 focus:outline-none">
                     </div>
                 </div>
@@ -599,11 +599,11 @@
                 <!-- Dates & Status -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">วันที่เริ่มงาน (NinSom_Hire_Date) *</label>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">วันที่เริ่มงาน (Peerakorn_Nin_Hire_Date) *</label>
                         <input type="date" id="formHireDate" required class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-brand-500/20 focus:outline-none">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">สถานะการทำงาน (NinSom_Status)</label>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">สถานะการทำงาน (Peerakorn_Nin_Status)</label>
                         <select id="formStatus" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-brand-500/20 focus:outline-none bg-white">
                             <option value="Active">Active (ทำงานอยู่)</option>
                             <option value="Probation">Probation (ทดลองงาน)</option>
@@ -615,7 +615,7 @@
 
                 <!-- Avatar URL -->
                 <div>
-                    <label class="block text-xs font-semibold text-slate-700 mb-1">ลิงก์รูปโปรไฟล์ (NinSom_Avatar_URL)</label>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">ลิงก์รูปโปรไฟล์ (Peerakorn_Nin_Avatar_URL)</label>
                     <input type="url" id="formAvatar" placeholder="https://..." class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-brand-500/20 focus:outline-none">
                 </div>
 
@@ -678,23 +678,23 @@
                     <h4 class="font-bold text-slate-800 text-xs mb-2">โครงสร้างเงินเดือนและภาษี (Monthly Compensation Breakdown)</h4>
                     <div class="space-y-1.5">
                         <div class="flex justify-between py-1 border-b border-slate-100">
-                            <span class="text-slate-500">เงินเดือนฐาน (NinSom_Base_Salary):</span>
+                            <span class="text-slate-500">เงินเดือนฐาน (Peerakorn_Nin_Base_Salary):</span>
                             <span id="detailBaseSalary" class="font-mono font-bold"></span>
                         </div>
                         <div class="flex justify-between py-1 border-b border-slate-100">
-                            <span class="text-slate-500">โบนัสประจำตำแหน่ง (NinSom_Bonus):</span>
+                            <span class="text-slate-500">โบนัสประจำตำแหน่ง (Peerakorn_Nin_Bonus):</span>
                             <span id="detailBonus" class="font-mono font-bold text-blue-600"></span>
                         </div>
                         <div class="flex justify-between py-1 border-b border-slate-100">
-                            <span class="text-slate-500">ประกันสังคม (NinSom_Social_Security):</span>
+                            <span class="text-slate-500">ประกันสังคม (Peerakorn_Nin_Social_Security):</span>
                             <span id="detailSSF" class="font-mono font-bold text-purple-600"></span>
                         </div>
                         <div class="flex justify-between py-1 border-b border-slate-100">
-                            <span class="text-slate-500">ภาษีหัก ณ ที่จ่าย (NinSom_Tax):</span>
+                            <span class="text-slate-500">ภาษีหัก ณ ที่จ่าย (Peerakorn_Nin_Tax):</span>
                             <span id="detailTax" class="font-mono font-bold text-amber-600"></span>
                         </div>
                         <div class="flex justify-between py-2 text-sm">
-                            <span class="font-bold text-slate-800">เงินเดือนสุทธิ (NinSom_Net_Salary):</span>
+                            <span class="font-bold text-slate-800">เงินเดือนสุทธิ (Peerakorn_Nin_Net_Salary):</span>
                             <span id="detailNetSalary" class="font-mono font-extrabold text-emerald-600 text-base"></span>
                         </div>
                     </div>

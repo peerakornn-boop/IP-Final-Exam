@@ -121,34 +121,34 @@ app.get('/api/health', async (req, res) => {
 app.get('/api/employees', async (req, res) => {
     try {
         const { search, department, status, sortBy, order } = req.query;
-        let query = 'SELECT * FROM NinSom_Employees WHERE 1=1';
+        let query = 'SELECT * FROM Peerakorn_Nin_Employees WHERE 1=1';
         const params = [];
 
         if (search) {
-            query += ` AND (NinSom_First_Name LIKE ? OR NinSom_Last_Name LIKE ? OR NinSom_Email LIKE ? OR NinSom_Position LIKE ?)`;
+            query += ` AND (Peerakorn_Nin_First_Name LIKE ? OR Peerakorn_Nin_Last_Name LIKE ? OR Peerakorn_Nin_Email LIKE ? OR Peerakorn_Nin_Position LIKE ?)`;
             const s = `%${search}%`;
             params.push(s, s, s, s);
         }
 
         if (department && department !== 'All') {
-            query += ` AND NinSom_Department = ?`;
+            query += ` AND Peerakorn_Nin_Department = ?`;
             params.push(department);
         }
 
         if (status && status !== 'All') {
-            query += ` AND NinSom_Status = ?`;
+            query += ` AND Peerakorn_Nin_Status = ?`;
             params.push(status);
         }
 
         const validSortCols = {
-            'id': 'NinSom_ID_Employee',
-            'name': 'NinSom_First_Name',
-            'salary': 'NinSom_Base_Salary',
-            'net_salary': 'NinSom_Net_Salary',
-            'hire_date': 'NinSom_Hire_Date'
+            'id': 'Peerakorn_Nin_ID_Employee',
+            'name': 'Peerakorn_Nin_First_Name',
+            'salary': 'Peerakorn_Nin_Base_Salary',
+            'net_salary': 'Peerakorn_Nin_Net_Salary',
+            'hire_date': 'Peerakorn_Nin_Hire_Date'
         };
 
-        const sortCol = validSortCols[sortBy] || 'NinSom_ID_Employee';
+        const sortCol = validSortCols[sortBy] || 'Peerakorn_Nin_ID_Employee';
         const sortOrder = (order && order.toUpperCase() === 'DESC') ? 'DESC' : 'ASC';
         query += ` ORDER BY ${sortCol} ${sortOrder}`;
 
@@ -162,13 +162,13 @@ app.get('/api/employees', async (req, res) => {
 // GET single employee by ID + salary history
 app.get('/api/employees/:id', async (req, res) => {
     try {
-        const [emp] = await pool.query('SELECT * FROM NinSom_Employees WHERE NinSom_ID_Employee = ?', [req.params.id]);
+        const [emp] = await pool.query('SELECT * FROM Peerakorn_Nin_Employees WHERE Peerakorn_Nin_ID_Employee = ?', [req.params.id]);
         if (emp.length === 0) {
             return res.status(404).json({ success: false, message: 'Employee not found' });
         }
 
         const [history] = await pool.query(
-            'SELECT * FROM NinSom_Salary_History WHERE NinSom_ID_Employee = ? ORDER BY NinSom_Year DESC, NinSom_Month DESC',
+            'SELECT * FROM Peerakorn_Nin_Salary_History WHERE Peerakorn_Nin_ID_Employee = ? ORDER BY Peerakorn_Nin_Year DESC, Peerakorn_Nin_Month DESC',
             [req.params.id]
         );
 
@@ -186,51 +186,51 @@ app.get('/api/employees/:id', async (req, res) => {
 app.post('/api/employees', async (req, res) => {
     try {
         const {
-            NinSom_First_Name,
-            NinSom_Last_Name,
-            NinSom_Email,
-            NinSom_Phone,
-            NinSom_Department,
-            NinSom_Position,
-            NinSom_Base_Salary,
-            NinSom_Bonus,
-            NinSom_Hire_Date,
-            NinSom_Status,
-            NinSom_Avatar_URL
+            Peerakorn_Nin_First_Name,
+            Peerakorn_Nin_Last_Name,
+            Peerakorn_Nin_Email,
+            Peerakorn_Nin_Phone,
+            Peerakorn_Nin_Department,
+            Peerakorn_Nin_Position,
+            Peerakorn_Nin_Base_Salary,
+            Peerakorn_Nin_Bonus,
+            Peerakorn_Nin_Hire_Date,
+            Peerakorn_Nin_Status,
+            Peerakorn_Nin_Avatar_URL
         } = req.body;
 
-        if (!NinSom_First_Name || !NinSom_Last_Name || !NinSom_Email || !NinSom_Base_Salary || !NinSom_Department) {
+        if (!Peerakorn_Nin_First_Name || !Peerakorn_Nin_Last_Name || !Peerakorn_Nin_Email || !Peerakorn_Nin_Base_Salary || !Peerakorn_Nin_Department) {
             return res.status(400).json({ success: false, message: 'Missing required employee fields' });
         }
 
-        const base = parseFloat(NinSom_Base_Salary);
-        const bonus = parseFloat(NinSom_Bonus || 0);
+        const base = parseFloat(Peerakorn_Nin_Base_Salary);
+        const bonus = parseFloat(Peerakorn_Nin_Bonus || 0);
         const calc = calculateDeductions(base, bonus);
 
         const sql = `
-            INSERT INTO NinSom_Employees (
-                NinSom_First_Name, NinSom_Last_Name, NinSom_Email, NinSom_Phone,
-                NinSom_Department, NinSom_Position, NinSom_Base_Salary, NinSom_Bonus,
-                NinSom_Social_Security, NinSom_Tax, NinSom_Net_Salary,
-                NinSom_Hire_Date, NinSom_Status, NinSom_Avatar_URL
+            INSERT INTO Peerakorn_Nin_Employees (
+                Peerakorn_Nin_First_Name, Peerakorn_Nin_Last_Name, Peerakorn_Nin_Email, Peerakorn_Nin_Phone,
+                Peerakorn_Nin_Department, Peerakorn_Nin_Position, Peerakorn_Nin_Base_Salary, Peerakorn_Nin_Bonus,
+                Peerakorn_Nin_Social_Security, Peerakorn_Nin_Tax, Peerakorn_Nin_Net_Salary,
+                Peerakorn_Nin_Hire_Date, Peerakorn_Nin_Status, Peerakorn_Nin_Avatar_URL
             ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         `;
 
         const [result] = await pool.query(sql, [
-            NinSom_First_Name,
-            NinSom_Last_Name,
-            NinSom_Email,
-            NinSom_Phone || '080-000-0000',
-            NinSom_Department,
-            NinSom_Position || 'Employee',
+            Peerakorn_Nin_First_Name,
+            Peerakorn_Nin_Last_Name,
+            Peerakorn_Nin_Email,
+            Peerakorn_Nin_Phone || '080-000-0000',
+            Peerakorn_Nin_Department,
+            Peerakorn_Nin_Position || 'Employee',
             base,
             bonus,
             calc.socialSecurity,
             calc.monthlyTax,
             calc.netSalary,
-            NinSom_Hire_Date || new Date().toISOString().split('T')[0],
-            NinSom_Status || 'Active',
-            NinSom_Avatar_URL || 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150'
+            Peerakorn_Nin_Hire_Date || new Date().toISOString().split('T')[0],
+            Peerakorn_Nin_Status || 'Active',
+            Peerakorn_Nin_Avatar_URL || 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150'
         ]);
 
         res.status(201).json({
@@ -249,57 +249,57 @@ app.put('/api/employees/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const {
-            NinSom_First_Name,
-            NinSom_Last_Name,
-            NinSom_Email,
-            NinSom_Phone,
-            NinSom_Department,
-            NinSom_Position,
-            NinSom_Base_Salary,
-            NinSom_Bonus,
-            NinSom_Hire_Date,
-            NinSom_Status,
-            NinSom_Avatar_URL
+            Peerakorn_Nin_First_Name,
+            Peerakorn_Nin_Last_Name,
+            Peerakorn_Nin_Email,
+            Peerakorn_Nin_Phone,
+            Peerakorn_Nin_Department,
+            Peerakorn_Nin_Position,
+            Peerakorn_Nin_Base_Salary,
+            Peerakorn_Nin_Bonus,
+            Peerakorn_Nin_Hire_Date,
+            Peerakorn_Nin_Status,
+            Peerakorn_Nin_Avatar_URL
         } = req.body;
 
-        const base = parseFloat(NinSom_Base_Salary);
-        const bonus = parseFloat(NinSom_Bonus || 0);
+        const base = parseFloat(Peerakorn_Nin_Base_Salary);
+        const bonus = parseFloat(Peerakorn_Nin_Bonus || 0);
         const calc = calculateDeductions(base, bonus);
 
         const sql = `
-            UPDATE NinSom_Employees SET
-                NinSom_First_Name = ?,
-                NinSom_Last_Name = ?,
-                NinSom_Email = ?,
-                NinSom_Phone = ?,
-                NinSom_Department = ?,
-                NinSom_Position = ?,
-                NinSom_Base_Salary = ?,
-                NinSom_Bonus = ?,
-                NinSom_Social_Security = ?,
-                NinSom_Tax = ?,
-                NinSom_Net_Salary = ?,
-                NinSom_Hire_Date = ?,
-                NinSom_Status = ?,
-                NinSom_Avatar_URL = ?
-            WHERE NinSom_ID_Employee = ?
+            UPDATE Peerakorn_Nin_Employees SET
+                Peerakorn_Nin_First_Name = ?,
+                Peerakorn_Nin_Last_Name = ?,
+                Peerakorn_Nin_Email = ?,
+                Peerakorn_Nin_Phone = ?,
+                Peerakorn_Nin_Department = ?,
+                Peerakorn_Nin_Position = ?,
+                Peerakorn_Nin_Base_Salary = ?,
+                Peerakorn_Nin_Bonus = ?,
+                Peerakorn_Nin_Social_Security = ?,
+                Peerakorn_Nin_Tax = ?,
+                Peerakorn_Nin_Net_Salary = ?,
+                Peerakorn_Nin_Hire_Date = ?,
+                Peerakorn_Nin_Status = ?,
+                Peerakorn_Nin_Avatar_URL = ?
+            WHERE Peerakorn_Nin_ID_Employee = ?
         `;
 
         await pool.query(sql, [
-            NinSom_First_Name,
-            NinSom_Last_Name,
-            NinSom_Email,
-            NinSom_Phone,
-            NinSom_Department,
-            NinSom_Position,
+            Peerakorn_Nin_First_Name,
+            Peerakorn_Nin_Last_Name,
+            Peerakorn_Nin_Email,
+            Peerakorn_Nin_Phone,
+            Peerakorn_Nin_Department,
+            Peerakorn_Nin_Position,
             base,
             bonus,
             calc.socialSecurity,
             calc.monthlyTax,
             calc.netSalary,
-            NinSom_Hire_Date,
-            NinSom_Status,
-            NinSom_Avatar_URL,
+            Peerakorn_Nin_Hire_Date,
+            Peerakorn_Nin_Status,
+            Peerakorn_Nin_Avatar_URL,
             id
         ]);
 
@@ -317,8 +317,8 @@ app.put('/api/employees/:id', async (req, res) => {
 app.delete('/api/employees/:id', async (req, res) => {
     try {
         const id = req.params.id;
-        await pool.query('DELETE FROM NinSom_Salary_History WHERE NinSom_ID_Employee = ?', [id]);
-        const [result] = await pool.query('DELETE FROM NinSom_Employees WHERE NinSom_ID_Employee = ?', [id]);
+        await pool.query('DELETE FROM Peerakorn_Nin_Salary_History WHERE Peerakorn_Nin_ID_Employee = ?', [id]);
+        const [result] = await pool.query('DELETE FROM Peerakorn_Nin_Employees WHERE Peerakorn_Nin_ID_Employee = ?', [id]);
         
         if (result.affectedRows === 0) {
             return res.status(404).json({ success: false, message: 'Employee not found' });
@@ -346,18 +346,18 @@ app.get('/api/salary-records', async (req, res) => {
     try {
         const { month, year, department } = req.query;
         let query = `
-            SELECT s.*, e.NinSom_First_Name, e.NinSom_Last_Name, e.NinSom_Department, e.NinSom_Position
-            FROM NinSom_Salary_History s
-            JOIN NinSom_Employees e ON s.NinSom_ID_Employee = e.NinSom_ID_Employee
+            SELECT s.*, e.Peerakorn_Nin_First_Name, e.Peerakorn_Nin_Last_Name, e.Peerakorn_Nin_Department, e.Peerakorn_Nin_Position
+            FROM Peerakorn_Nin_Salary_History s
+            JOIN Peerakorn_Nin_Employees e ON s.Peerakorn_Nin_ID_Employee = e.Peerakorn_Nin_ID_Employee
             WHERE 1=1
         `;
         const params = [];
 
-        if (month) { query += ' AND s.NinSom_Month = ?'; params.push(month); }
-        if (year) { query += ' AND s.NinSom_Year = ?'; params.push(year); }
-        if (department && department !== 'All') { query += ' AND e.NinSom_Department = ?'; params.push(department); }
+        if (month) { query += ' AND s.Peerakorn_Nin_Month = ?'; params.push(month); }
+        if (year) { query += ' AND s.Peerakorn_Nin_Year = ?'; params.push(year); }
+        if (department && department !== 'All') { query += ' AND e.Peerakorn_Nin_Department = ?'; params.push(department); }
 
-        query += ' ORDER BY s.NinSom_Year DESC, s.NinSom_Month DESC, s.NinSom_ID_Salary DESC';
+        query += ' ORDER BY s.Peerakorn_Nin_Year DESC, s.Peerakorn_Nin_Month DESC, s.Peerakorn_Nin_ID_Salary DESC';
 
         const [rows] = await pool.query(query, params);
         res.json({ success: true, count: rows.length, data: rows });
@@ -370,36 +370,36 @@ app.get('/api/salary-records', async (req, res) => {
 app.post('/api/salary-records', async (req, res) => {
     try {
         const {
-            NinSom_ID_Employee,
-            NinSom_Month,
-            NinSom_Year,
-            NinSom_Base_Salary,
-            NinSom_Bonus,
-            NinSom_Overtime,
-            NinSom_Deductions,
-            NinSom_Payment_Status,
-            NinSom_Payment_Date
+            Peerakorn_Nin_ID_Employee,
+            Peerakorn_Nin_Month,
+            Peerakorn_Nin_Year,
+            Peerakorn_Nin_Base_Salary,
+            Peerakorn_Nin_Bonus,
+            Peerakorn_Nin_Overtime,
+            Peerakorn_Nin_Deductions,
+            Peerakorn_Nin_Payment_Status,
+            Peerakorn_Nin_Payment_Date
         } = req.body;
 
-        const base = parseFloat(NinSom_Base_Salary);
-        const bonus = parseFloat(NinSom_Bonus || 0);
-        const ot = parseFloat(NinSom_Overtime || 0);
-        const ded = parseFloat(NinSom_Deductions || 0);
+        const base = parseFloat(Peerakorn_Nin_Base_Salary);
+        const bonus = parseFloat(Peerakorn_Nin_Bonus || 0);
+        const ot = parseFloat(Peerakorn_Nin_Overtime || 0);
+        const ded = parseFloat(Peerakorn_Nin_Deductions || 0);
         const calc = calculateDeductions(base, bonus, ot, ded);
 
         const sql = `
-            INSERT INTO NinSom_Salary_History (
-                NinSom_ID_Employee, NinSom_Month, NinSom_Year,
-                NinSom_Base_Salary, NinSom_Bonus, NinSom_Overtime,
-                NinSom_Social_Security, NinSom_Tax, NinSom_Deductions,
-                NinSom_Net_Salary, NinSom_Payment_Status, NinSom_Payment_Date
+            INSERT INTO Peerakorn_Nin_Salary_History (
+                Peerakorn_Nin_ID_Employee, Peerakorn_Nin_Month, Peerakorn_Nin_Year,
+                Peerakorn_Nin_Base_Salary, Peerakorn_Nin_Bonus, Peerakorn_Nin_Overtime,
+                Peerakorn_Nin_Social_Security, Peerakorn_Nin_Tax, Peerakorn_Nin_Deductions,
+                Peerakorn_Nin_Net_Salary, Peerakorn_Nin_Payment_Status, Peerakorn_Nin_Payment_Date
             ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         `;
 
         const [result] = await pool.query(sql, [
-            NinSom_ID_Employee,
-            NinSom_Month || (new Date().getMonth() + 1),
-            NinSom_Year || new Date().getFullYear(),
+            Peerakorn_Nin_ID_Employee,
+            Peerakorn_Nin_Month || (new Date().getMonth() + 1),
+            Peerakorn_Nin_Year || new Date().getFullYear(),
             base,
             bonus,
             ot,
@@ -407,8 +407,8 @@ app.post('/api/salary-records', async (req, res) => {
             calc.monthlyTax,
             ded,
             calc.netSalary,
-            NinSom_Payment_Status || 'Paid',
-            NinSom_Payment_Date || new Date().toISOString().split('T')[0]
+            Peerakorn_Nin_Payment_Status || 'Paid',
+            Peerakorn_Nin_Payment_Date || new Date().toISOString().split('T')[0]
         ]);
 
         res.status(201).json({ success: true, recordId: result.insertId, calculated: calc });
@@ -427,21 +427,21 @@ app.get('/api/analytics/overview', async (req, res) => {
         const [empStats] = await pool.query(`
             SELECT 
                 COUNT(*) as total_employees,
-                SUM(CASE WHEN NinSom_Status = 'Active' THEN 1 ELSE 0 END) as active_employees,
-                SUM(CASE WHEN NinSom_Status = 'Probation' THEN 1 ELSE 0 END) as probation_employees,
-                SUM(NinSom_Base_Salary) as total_base_payroll,
-                SUM(NinSom_Bonus) as total_bonus,
-                SUM(NinSom_Social_Security) as total_social_security,
-                SUM(NinSom_Tax) as total_tax,
-                SUM(NinSom_Net_Salary) as total_net_payroll,
-                AVG(NinSom_Base_Salary) as avg_base_salary,
-                AVG(NinSom_Net_Salary) as avg_net_salary,
-                MAX(NinSom_Base_Salary) as max_salary,
-                MIN(NinSom_Base_Salary) as min_salary
-            FROM NinSom_Employees
+                SUM(CASE WHEN Peerakorn_Nin_Status = 'Active' THEN 1 ELSE 0 END) as active_employees,
+                SUM(CASE WHEN Peerakorn_Nin_Status = 'Probation' THEN 1 ELSE 0 END) as probation_employees,
+                SUM(Peerakorn_Nin_Base_Salary) as total_base_payroll,
+                SUM(Peerakorn_Nin_Bonus) as total_bonus,
+                SUM(Peerakorn_Nin_Social_Security) as total_social_security,
+                SUM(Peerakorn_Nin_Tax) as total_tax,
+                SUM(Peerakorn_Nin_Net_Salary) as total_net_payroll,
+                AVG(Peerakorn_Nin_Base_Salary) as avg_base_salary,
+                AVG(Peerakorn_Nin_Net_Salary) as avg_net_salary,
+                MAX(Peerakorn_Nin_Base_Salary) as max_salary,
+                MIN(Peerakorn_Nin_Base_Salary) as min_salary
+            FROM Peerakorn_Nin_Employees
         `);
 
-        const [deptCount] = await pool.query('SELECT COUNT(*) as total_departments FROM NinSom_Departments');
+        const [deptCount] = await pool.query('SELECT COUNT(*) as total_departments FROM Peerakorn_Nin_Departments');
 
         res.json({
             success: true,
@@ -460,17 +460,17 @@ app.get('/api/analytics/by-department', async (req, res) => {
     try {
         const [rows] = await pool.query(`
             SELECT 
-                d.NinSom_Department_Name as department,
-                d.NinSom_Budget as budget,
-                COUNT(e.NinSom_ID_Employee) as employee_count,
-                COALESCE(SUM(e.NinSom_Base_Salary), 0) as total_base_salary,
-                COALESCE(SUM(e.NinSom_Bonus), 0) as total_bonus,
-                COALESCE(SUM(e.NinSom_Net_Salary), 0) as total_net_salary,
-                COALESCE(AVG(e.NinSom_Base_Salary), 0) as avg_salary,
-                COALESCE(d.NinSom_Budget - SUM(e.NinSom_Net_Salary), d.NinSom_Budget) as remaining_budget
-            FROM NinSom_Departments d
-            LEFT JOIN NinSom_Employees e ON d.NinSom_Department_Name = e.NinSom_Department
-            GROUP BY d.NinSom_ID_Department, d.NinSom_Department_Name, d.NinSom_Budget
+                d.Peerakorn_Nin_Department_Name as department,
+                d.Peerakorn_Nin_Budget as budget,
+                COUNT(e.Peerakorn_Nin_ID_Employee) as employee_count,
+                COALESCE(SUM(e.Peerakorn_Nin_Base_Salary), 0) as total_base_salary,
+                COALESCE(SUM(e.Peerakorn_Nin_Bonus), 0) as total_bonus,
+                COALESCE(SUM(e.Peerakorn_Nin_Net_Salary), 0) as total_net_salary,
+                COALESCE(AVG(e.Peerakorn_Nin_Base_Salary), 0) as avg_salary,
+                COALESCE(d.Peerakorn_Nin_Budget - SUM(e.Peerakorn_Nin_Net_Salary), d.Peerakorn_Nin_Budget) as remaining_budget
+            FROM Peerakorn_Nin_Departments d
+            LEFT JOIN Peerakorn_Nin_Employees e ON d.Peerakorn_Nin_Department_Name = e.Peerakorn_Nin_Department
+            GROUP BY d.Peerakorn_Nin_ID_Department, d.Peerakorn_Nin_Department_Name, d.Peerakorn_Nin_Budget
             ORDER BY total_net_salary DESC
         `);
 
@@ -486,17 +486,17 @@ app.get('/api/analytics/salary-brackets', async (req, res) => {
         const [rows] = await pool.query(`
             SELECT 
                 CASE 
-                    WHEN NinSom_Base_Salary < 35000 THEN 'Entry Level (< 35k)'
-                    WHEN NinSom_Base_Salary BETWEEN 35000 AND 60000 THEN 'Mid Level (35k - 60k)'
-                    WHEN NinSom_Base_Salary BETWEEN 60001 AND 90000 THEN 'Senior Level (60k - 90k)'
+                    WHEN Peerakorn_Nin_Base_Salary < 35000 THEN 'Entry Level (< 35k)'
+                    WHEN Peerakorn_Nin_Base_Salary BETWEEN 35000 AND 60000 THEN 'Mid Level (35k - 60k)'
+                    WHEN Peerakorn_Nin_Base_Salary BETWEEN 60001 AND 90000 THEN 'Senior Level (60k - 90k)'
                     ELSE 'Executive / Lead (> 90k)'
                 END as bracket,
                 COUNT(*) as count,
-                SUM(NinSom_Base_Salary) as total_salary,
-                AVG(NinSom_Base_Salary) as avg_salary
-            FROM NinSom_Employees
+                SUM(Peerakorn_Nin_Base_Salary) as total_salary,
+                AVG(Peerakorn_Nin_Base_Salary) as avg_salary
+            FROM Peerakorn_Nin_Employees
             GROUP BY bracket
-            ORDER BY min(NinSom_Base_Salary) ASC
+            ORDER BY min(Peerakorn_Nin_Base_Salary) ASC
         `);
 
         res.json({ success: true, data: rows });
@@ -510,19 +510,19 @@ app.get('/api/analytics/monthly-trends', async (req, res) => {
     try {
         const [rows] = await pool.query(`
             SELECT 
-                CONCAT(NinSom_Year, '-', LPAD(NinSom_Month, 2, '0')) as period,
-                NinSom_Month as month,
-                NinSom_Year as year,
-                COUNT(NinSom_ID_Salary) as total_disbursements,
-                SUM(NinSom_Base_Salary) as total_base,
-                SUM(NinSom_Bonus) as total_bonus,
-                SUM(NinSom_Overtime) as total_overtime,
-                SUM(NinSom_Tax) as total_tax,
-                SUM(NinSom_Social_Security) as total_social_security,
-                SUM(NinSom_Net_Salary) as total_net_spend
-            FROM NinSom_Salary_History
-            GROUP BY NinSom_Year, NinSom_Month
-            ORDER BY NinSom_Year ASC, NinSom_Month ASC
+                CONCAT(Peerakorn_Nin_Year, '-', LPAD(Peerakorn_Nin_Month, 2, '0')) as period,
+                Peerakorn_Nin_Month as month,
+                Peerakorn_Nin_Year as year,
+                COUNT(Peerakorn_Nin_ID_Salary) as total_disbursements,
+                SUM(Peerakorn_Nin_Base_Salary) as total_base,
+                SUM(Peerakorn_Nin_Bonus) as total_bonus,
+                SUM(Peerakorn_Nin_Overtime) as total_overtime,
+                SUM(Peerakorn_Nin_Tax) as total_tax,
+                SUM(Peerakorn_Nin_Social_Security) as total_social_security,
+                SUM(Peerakorn_Nin_Net_Salary) as total_net_spend
+            FROM Peerakorn_Nin_Salary_History
+            GROUP BY Peerakorn_Nin_Year, Peerakorn_Nin_Month
+            ORDER BY Peerakorn_Nin_Year ASC, Peerakorn_Nin_Month ASC
         `);
 
         res.json({ success: true, data: rows });
@@ -536,7 +536,7 @@ app.get('/api/analytics/monthly-trends', async (req, res) => {
 // -------------------------------------------------------------
 app.get('/api/departments', async (req, res) => {
     try {
-        const [rows] = await pool.query('SELECT * FROM NinSom_Departments ORDER BY NinSom_ID_Department ASC');
+        const [rows] = await pool.query('SELECT * FROM Peerakorn_Nin_Departments ORDER BY Peerakorn_Nin_ID_Department ASC');
         res.json({ success: true, data: rows });
     } catch (err) {
         res.status(500).json({ success: false, error: err.message });
